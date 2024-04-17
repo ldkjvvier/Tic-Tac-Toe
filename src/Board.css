@@ -1,0 +1,42 @@
+
+
+
+.square-0{
+border-bottom: 2px solid gainsboro;
+border-right: 2px solid gainsboro;
+}
+.square-1{
+  border-left: 2px solid gainsboro;
+  border-bottom: 2px solid gainsboro;
+  border-right: 2px solid gainsboro;
+}
+.square-2{
+  border-left: 2px solid gainsboro;
+  border-bottom: 2px solid gainsboro;
+}
+.square-3{
+  border-top: 2px solid gainsboro;
+  border-right: 2px solid gainsboro;
+  border-bottom: 2px solid gainsboro;
+}
+.square-4{
+  border: 2px solid gainsboro
+}
+.square-5{
+  border-left: 2px solid gainsboro;
+  border-top: 2px solid gainsboro;
+  border-bottom: 2px solid gainsboro;
+}
+.square-6{
+  border-top: 2px solid gainsboro;
+  border-right: 2px solid gainsboro;
+}
+.square-7{
+  border-left: 2px solid gainsboro;
+  border-top: 2px solid gainsboro;
+  border-right: 2px solid gainsboro;
+}
+.square-8{
+  border-left: 2px solid gainsboro;
+  border-top: 2px solid gainsboro;
+}

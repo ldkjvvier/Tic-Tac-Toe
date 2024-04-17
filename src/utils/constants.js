@@ -16,10 +16,3 @@ export const WINNING_COMBINATIONS = [
     [0,4,8], // 1st diagonal
     [2,4,6], // 2nd diagonal
 ]
-
-
-
-
-
-/* Crear una funcion que reciba un array de numeros que ingresa el usuario (max 20) y muestre el numero mayor y el numero menor, aparte mostrar los numeros repetidos */
-
