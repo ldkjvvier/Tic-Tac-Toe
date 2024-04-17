@@ -69,10 +69,10 @@ export const Board = () => {
 	return (
 		<>
 			<main>
-				<section className="mb-12 text-center md:text-5xl">
+				<section className="mb-12 text-center text-3xl md:text-5xl">
 					<h1>Tic Tac Toe</h1>
 				</section>
-				<section>
+				<section className='flex justify-center'>
 					<div className="grid grid-cols-3 grid-rows-3">
 						{board.map((_, index) => (
 							<Square
@@ -93,7 +93,7 @@ export const Board = () => {
 					<>
 						{isGameFinish ? (
 							<button
-								className="bg-transparent fixed h-screen w-screen top-0 left-0 bg-opacity-50"
+								className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30"
 								onClick={() => {
 									setBoard(Array(9).fill(null))
 									setTurn(Turns.X)
@@ -104,7 +104,7 @@ export const Board = () => {
 						) : null}
 
 						<button
-							className="bg-blue-500 z-50 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+							className="border transition hover:bg-gray-950 z-50 text-white font-bold py-2 px-4 rounded"
 							onClick={() => {
 								dispatch(clearState())
 								setBoard(Array(9).fill(null))

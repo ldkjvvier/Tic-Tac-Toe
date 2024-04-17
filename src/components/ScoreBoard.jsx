@@ -6,7 +6,7 @@ export const ScoreBoard = ({ children }) => {
 
 	return (
 		<>
-			<section className="flex items-center w-full justify-between md:text-2xl mt-12">
+			<section className="grid grid-cols-3 justify-items-center md:text-2xl mt-12">
 				<div className="text-center">
 					<p>JUGADOR (x)</p>
 					<span>{user.Xwinner}</span>

@@ -7,7 +7,7 @@ export const Square = ({ children, updateBoard, index }) => {
 
 	return (
 		<div
-			className={`flex items-center justify-center w-[75px] h-[75px] md:w-[150px] md:h-[150px] font-bold md:text-8xl square-${index}`}
+			className={`flex items-center justify-center w-[75px] h-[75px] md:w-[150px] md:h-[150px] font-bold text-4xl md:text-8xl square-${index}`}
 			onClick={handleClick}
 		>
 			{children}
