@@ -38,8 +38,6 @@ export const Board = () => {
 			dispatch(incrementO())
 			setIsGameFinish(true)
 		}
-
-		
 	}
 	const updateBoard = (index) => {
 		/* Si ya hay un ganador no se aplica */
@@ -67,8 +65,8 @@ export const Board = () => {
 	}
 
 	return (
-		<div className='grid grid-flow-row place-items-center  mt-16 md:mt-32'>
-			<section className=" mb-12 text-center text-3xl md:text-5xl">
+		<div className='grid grid-flow-row place-items-center landscape:mt-4  mt-16 md:mt-32'>
+			<section className="landscape:hidden landscape:lg:block mb-12 text-center text-3xl md:text-5xl">
 				<h1>Tic Tac Toe</h1>
 			</section>
 			<section className="flex justify-center">
