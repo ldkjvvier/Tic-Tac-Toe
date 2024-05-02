@@ -67,57 +67,55 @@ export const Board = () => {
 	}
 
 	return (
-		<>
-			<main>
-				<section className="mb-12 text-center text-3xl md:text-5xl">
-					<h1>Tic Tac Toe</h1>
-				</section>
-				<section className='flex justify-center'>
-					<div className="grid grid-cols-3 grid-rows-3">
-						{board.map((_, index) => (
-							<Square
-								key={index}
-								index={index}
-								updateBoard={updateBoard}
-								board={board}
-								winner={winner}
-								setWinner={setWinner}
-								checkWinner={checkWinner}
-							>
-								<span>{board[index]}</span>
-							</Square>
-						))}
-					</div>
-				</section>
-				<ScoreBoard winner={winner}>
-					<>
-						{isGameFinish ? (
-							<button
-								className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30"
-								onClick={() => {
-									setBoard(Array(9).fill(null))
-									setTurn(Turns.X)
-									setWinner(null)
-									setIsGameFinish(false)
-								}}
-							></button>
-						) : null}
-
+		<div className='grid grid-flow-row place-items-center  mt-16 md:mt-32'>
+			<section className=" mb-12 text-center text-3xl md:text-5xl">
+				<h1>Tic Tac Toe</h1>
+			</section>
+			<section className="flex justify-center">
+				<div className="grid grid-cols-3 grid-rows-3">
+					{board.map((_, index) => (
+						<Square
+							key={index}
+							index={index}
+							updateBoard={updateBoard}
+							board={board}
+							winner={winner}
+							setWinner={setWinner}
+							checkWinner={checkWinner}
+						>
+							<span>{board[index]}</span>
+						</Square>
+					))}
+				</div>
+			</section>
+			<ScoreBoard winner={winner}>
+				<>
+					{isGameFinish ? (
 						<button
-							className="border transition hover:bg-gray-950 z-50 text-white font-bold py-2 px-4 rounded"
+							className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30"
 							onClick={() => {
-								dispatch(clearState())
 								setBoard(Array(9).fill(null))
 								setTurn(Turns.X)
 								setWinner(null)
 								setIsGameFinish(false)
 							}}
-						>
-							Reiniciar ScoreBoard
-						</button>
-					</>
-				</ScoreBoard>
-			</main>
-		</>
+						></button>
+					) : null}
+
+					<button
+						className="border transition hover:bg-gray-950 z-50 text-white font-bold py-2 px-4 rounded"
+						onClick={() => {
+							dispatch(clearState())
+							setBoard(Array(9).fill(null))
+							setTurn(Turns.X)
+							setWinner(null)
+							setIsGameFinish(false)
+						}}
+					>
+						Reiniciar ScoreBoard
+					</button>
+				</>
+			</ScoreBoard>
+		</div>
 	)
 }
