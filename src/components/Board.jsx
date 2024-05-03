@@ -18,14 +18,14 @@ export const Board = () => {
 
 	const checkWinner = (newBoard) => {
 		/* Si retorna null no hay ganador */
-		for (let i in WINNING_COMBINATIONS) {
+		for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
 			const [a, b, c] = WINNING_COMBINATIONS[i]
 			if (
 				newBoard[a] &&
 				newBoard[a] === newBoard[b] &&
 				newBoard[a] === newBoard[c]
 			) {
-				return board[a]
+				return newBoard[a]
 			}
 		}
 		return null
@@ -40,11 +40,8 @@ export const Board = () => {
 		}
 	}
 	const updateBoard = (index) => {
-		/* Si ya hay un ganador no se aplica */
-		if (winner) return
-
 		/* Si ya está ocupada la posicion no se aplica */
-		if (board[index] !== null) return
+		if (board[index] !== null || winner) return
 		/* Actualiza el tablero con el turno */
 		const newBoard = [...board]
 		newBoard[index] = turn
@@ -53,7 +50,8 @@ export const Board = () => {
 		const newTurn = turn === Turns.X ? Turns.O : Turns.X
 		setTurn(newTurn)
 		/* Revisa si hay un ganador */
-		setWinner(checkWinner(newBoard))
+		const newWinner = checkWinner(newBoard)
+		setWinner(newWinner)
 
 		/* Si hay empate lo guarda en la scoreboard */
 		if (newBoard.every((square) => square !== null)) {
@@ -61,7 +59,11 @@ export const Board = () => {
 			setIsGameFinish(true)
 		}
 		/* Guarda el ganador en la scoreBoard */
-		DispatchWinner(checkWinner(newBoard))
+		if (newWinner) {
+			DispatchWinner(checkWinner(newBoard))
+		}
+
+		
 	}
 
 	return (
