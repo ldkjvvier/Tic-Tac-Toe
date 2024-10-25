@@ -18,7 +18,7 @@ export const ScoreBoard = ({ children }: ScoreBoardProps) => {
 
   return (
     <>
-      <section className="grid grid-cols-3 justify-items-center md:text-2xl mt-12 md:max-w-[65%] ">
+      <section className="grid grid-cols-3 justify-items-center md:text-2xl">
         <div className="text-center flex items-center">
           <span className="w-4 h-4 inline-block">
             <Cross />
@@ -38,7 +38,7 @@ export const ScoreBoard = ({ children }: ScoreBoardProps) => {
           <span className="ml-3">{user.Owinner}</span>
         </div>
       </section>
-      <section className="flex justify-center gap-3 mt-6">{children}</section>
+      <div>{children}</div>
     </>
   );
 };
