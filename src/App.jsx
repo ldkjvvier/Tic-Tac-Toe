@@ -1,10 +1,5 @@
-import { Board } from "./components/board";
+import { Board } from './components/Board'
 
 export const App = () => {
-  return (
-		<>
-			<Board />
-		</>
-	)
-};
-
+	return <Board />
+}
