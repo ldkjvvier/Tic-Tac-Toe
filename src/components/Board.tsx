@@ -5,6 +5,7 @@ import { ScoreBoard } from './ScoreBoard';
 import { BoardType } from '@/models/types';
 import { incrementO, incrementX, incrementDraw, clearState } from '../redux/userSlice';
 import { useDispatch } from 'react-redux';
+import { Circle, Cross } from './icons';
 export const Board = () => {
   const dispatch = useDispatch();
   const [turn, setTurn] = useState(Turns.X);
@@ -65,38 +66,39 @@ export const Board = () => {
         <div className="grid grid-cols-3 grid-rows-3">
           {board.map((_, index) => (
             <Square key={index} index={index} updateBoard={updateBoard}>
-              <span>{board[index]}</span>
+              <span className="p-3 md:p-6">
+                {board[index] === Turns.X && <Cross />}
+                {board[index] === Turns.O && <Circle />}
+              </span>
             </Square>
           ))}
         </div>
       </section>
       <ScoreBoard>
-        <>
-          {isGameFinish ? (
-            <button
-              className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30"
-              onClick={() => {
-                setBoard(Array(9).fill(null));
-                setTurn(Turns.X);
-                setWinner(null);
-                setIsGameFinish(false);
-              }}
-            ></button>
-          ) : null}
-
+        {isGameFinish && (
           <button
-            className="border transition hover:bg-gray-950 z-50 text-white font-bold py-2 px-4 rounded"
+            className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30"
             onClick={() => {
-              dispatch(clearState());
               setBoard(Array(9).fill(null));
               setTurn(Turns.X);
               setWinner(null);
               setIsGameFinish(false);
             }}
-          >
-            Reiniciar ScoreBoard
-          </button>
-        </>
+          />
+        )}
+
+        <button
+          className="border transition hover:bg-gray-950 z-50 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            dispatch(clearState());
+            setBoard(Array(9).fill(null));
+            setTurn(Turns.X);
+            setWinner(null);
+            setIsGameFinish(false);
+          }}
+        >
+          Reiniciar ScoreBoard
+        </button>
       </ScoreBoard>
     </>
   );
