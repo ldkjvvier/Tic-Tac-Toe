@@ -5,6 +5,8 @@
 @font-face {
   font-family: "Raleway";
   src: url("../public/assets/fonts/RalewaySemiBold.ttf");
+  font-weight: 400;
+  font-style: normal;
 }
 
 :root {
@@ -25,4 +27,5 @@
 body{
   margin: 0;
   padding: 0;
+  background-color: #1B263B;
 }

@@ -11,8 +11,8 @@ export const Cross = () => (
     width="100%"
     height="100%"
   >
-    <path d="M16 16L112 112" stroke="currentColor" strokeWidth="16" strokeLinecap="round" />
-    <path d="M112 16L16 112" stroke="currentColor" strokeWidth="16" strokeLinecap="round" />
+    <path d="M16 16L112 112" stroke="#EF476F" strokeWidth="16" strokeLinecap="round" />
+    <path d="M112 16L16 112" stroke="#EF476F" strokeWidth="16" strokeLinecap="round" />
   </motion.svg>
 );
 
@@ -27,6 +27,6 @@ export const Circle = () => (
     width="100%"
     height="100%"
   >
-    <circle cx="64" cy="64" r="48" stroke="currentColor" strokeWidth="16" fill="none" />
+    <circle cx="64" cy="64" r="48" stroke="#06D6A0" strokeWidth="16" fill="none" />
   </motion.svg>
 );

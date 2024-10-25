@@ -1,42 +1,46 @@
+/* Bordes para cada posición del tablero */
 
+/* Esquinas */
+.square-0 {
+  border-bottom: 4px solid #33475c;
+  border-right: 4px solid #33475c;
+}
+.square-2 {
+  border-bottom: 4px solid #33475c;
+  border-left: 4px solid #33475c;
+}
+.square-6 {
+  border-top: 4px solid #33475c;
+  border-right: 4px solid #33475c;
+}
+.square-8 {
+  border-top: 4px solid #33475c;
+  border-left: 4px solid #33475c;
+}
 
+/* Lados */
+.square-1 {
+  border-left: 4px solid #33475c;
+  border-right: 4px solid #33475c;
+  border-bottom: 4px solid #33475c;
+}
+.square-3 {
+  border-top: 4px solid #33475c;
+  border-right: 4px solid #33475c;
+  border-bottom: 4px solid #33475c;
+}
+.square-5 {
+  border-top: 4px solid #33475c;
+  border-left: 4px solid #33475c;
+  border-bottom: 4px solid #33475c;
+}
+.square-7 {
+  border-left: 4px solid #33475c;
+  border-top: 4px solid #33475c;
+  border-right: 4px solid #33475c;
+}
 
-.square-0{
-border-bottom: 2px solid gainsboro;
-border-right: 2px solid gainsboro;
-}
-.square-1{
-  border-left: 2px solid gainsboro;
-  border-bottom: 2px solid gainsboro;
-  border-right: 2px solid gainsboro;
-}
-.square-2{
-  border-left: 2px solid gainsboro;
-  border-bottom: 2px solid gainsboro;
-}
-.square-3{
-  border-top: 2px solid gainsboro;
-  border-right: 2px solid gainsboro;
-  border-bottom: 2px solid gainsboro;
-}
-.square-4{
-  border: 2px solid gainsboro
-}
-.square-5{
-  border-left: 2px solid gainsboro;
-  border-top: 2px solid gainsboro;
-  border-bottom: 2px solid gainsboro;
-}
-.square-6{
-  border-top: 2px solid gainsboro;
-  border-right: 2px solid gainsboro;
-}
-.square-7{
-  border-left: 2px solid gainsboro;
-  border-top: 2px solid gainsboro;
-  border-right: 2px solid gainsboro;
-}
-.square-8{
-  border-left: 2px solid gainsboro;
-  border-top: 2px solid gainsboro;
+/* Centro */
+.square-4 {
+  border: 4px solid #33475c;
 }
