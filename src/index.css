@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Raleway";
-  src: url("../public/assets/fonts/RalewaySemiBold.ttf");
+  src: url("/assets/fonts/RalewaySemiBold.ttf");
   font-weight: 400;
   font-style: normal;
 }

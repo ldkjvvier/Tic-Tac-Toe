@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface GameState {
-  Xwinner: number;
-  Owinner: number;
-  draw: number;
-}
-
-const initialState: GameState = {
+const initialState = {
   Xwinner: 0,
   Owinner: 0,
   draw: 0

@@ -3,18 +3,16 @@ import { Cross, Circle } from './icons';
 interface ScoreBoardProps {
   children: React.ReactNode;
 }
+interface GameState {
+  user: {
+    Xwinner: number;
+    Owinner: number;
+    draw: number;
+  };
+}
 
 export const ScoreBoard = ({ children }: ScoreBoardProps) => {
-  interface RootState {
-    // TODO CHANGE THIS
-    user: {
-      Xwinner: number;
-      draw: number;
-      Owinner: number;
-    };
-  }
-
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: GameState) => state.user);
 
   return (
     <>
