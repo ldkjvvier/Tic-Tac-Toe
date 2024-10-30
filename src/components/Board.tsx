@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Turns, WINNING_COMBINATIONS } from '@/utils/constants';
 import { ScoreBoard } from './ScoreBoard';
 import { BoardType } from '@/models/types';
-import { incrementO, incrementX, incrementDraw, clearState } from '../redux/userSlice';
+import { incrementO, incrementX, incrementDraw, clearState } from '../redux/gameSlice';
 import { useDispatch } from 'react-redux';
 import { Circle, Cross } from './icons';
 export const Board = () => {

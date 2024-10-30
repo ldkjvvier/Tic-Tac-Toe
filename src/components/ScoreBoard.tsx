@@ -1,18 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Cross, Circle } from './icons';
+import { RootState } from '@/redux/store';
+
 interface ScoreBoardProps {
   children: React.ReactNode;
 }
-interface GameState {
-  user: {
-    Xwinner: number;
-    Owinner: number;
-    draw: number;
-  };
-}
 
 export const ScoreBoard = ({ children }: ScoreBoardProps) => {
-  const user = useSelector((state: GameState) => state.user);
+  const state = useSelector((state: RootState) => state.game);
 
   return (
     <>
@@ -21,19 +16,19 @@ export const ScoreBoard = ({ children }: ScoreBoardProps) => {
           <span className="w-4 h-4 inline-block">
             <Cross />
           </span>
-          <span className="ml-1">JUGADOR:</span>
-          <span className="ml-3">{user.Xwinner}</span>
+          <span className="ml-1">{state.user1.name}:</span>
+          <span className="ml-3">{state.user1.victories}</span>
         </div>
         <div className="text-center flex flex-col items-center">
           <p>-</p>
-          <span>{user.draw}</span>
+          <span>{state.draw}</span>
         </div>
         <div className="text-center flex items-center">
           <span className="w-4 h-4 inline-block">
             <Circle />
           </span>
-          <span className="ml-1">JUGADOR:</span>
-          <span className="ml-3">{user.Owinner}</span>
+          <span className="ml-1">{state.user2.name}:</span>
+          <span className="ml-3">{state.user2.victories}</span>
         </div>
       </section>
       <div>{children}</div>
