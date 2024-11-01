@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux';
 import { Cross, Circle } from './icons';
 import { RootState } from '@/redux/store';
 
 interface ScoreBoardProps {
   children: React.ReactNode;
+  state: RootState['game'];
 }
 
-export const ScoreBoard = ({ children }: ScoreBoardProps) => {
-  const state = useSelector((state: RootState) => state.game);
-
+export const ScoreBoard = ({ children, state }: ScoreBoardProps) => {
   return (
     <>
       <section className="grid grid-cols-3 justify-items-center md:text-2xl">

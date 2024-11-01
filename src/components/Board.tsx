@@ -1,27 +1,20 @@
 import { Square } from './Square';
 import { useEffect, useState } from 'react';
-import { Turns, WINNING_COMBINATIONS } from '@/utils/constants';
+import { Turns, checkWinner, selectBotMove } from '@/utils';
 import { ScoreBoard } from './ScoreBoard';
 import { BoardType } from '@/models/types';
 import { incrementO, incrementX, incrementDraw, clearState } from '../redux/gameSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Circle, Cross } from './icons';
+import { RootState } from '@/redux/store';
 export const Board = () => {
   const dispatch = useDispatch();
+  const gameState = useSelector((state: RootState) => state.game);
   const [turn, setTurn] = useState(Turns.X);
-  const [board, setBoard] = useState<BoardType>(Array(9).fill(null));
+  const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
-
-  const checkWinner = (newBoard: BoardType): string | null => {
-    /* Si retorna null no hay ganador */
-    for (const [a, b, c] of WINNING_COMBINATIONS) {
-      if (newBoard[a] && newBoard[a] === newBoard[b] && newBoard[a] === newBoard[c]) {
-        return newBoard[a];
-      }
-    }
-    return null;
-  };
+  const DIFFICULTY = 'easy';
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
       dispatch(incrementX());
@@ -33,15 +26,24 @@ export const Board = () => {
     }
   };
   const updateBoard = (index: number): void => {
-    /* Si ya está ocupada la posicion no se aplica */
-    if (board[index] !== null || winner) return;
-    /* Actualiza el tablero con el turno */
+    if (board[index] !== null || winner) return; // Verificar si la posición está ocupada o si ya hay un ganador
+
     const newBoard = [...board];
     newBoard[index] = turn;
     setBoard(newBoard);
-    /* Cambia de turno */
+
     const newTurn = turn === Turns.X ? Turns.O : Turns.X;
     setTurn(newTurn);
+
+    // Movimiento del bot
+    if (gameState.mode !== 'local' && newTurn === Turns.O && !winner) {
+      // Solo se ejecuta el movimiento del bot después de que se haya cambiado el turno
+      setTimeout(() => {
+        const botMove = selectBotMove(DIFFICULTY, newBoard);
+        updateBoard(botMove);
+        setTurn(Turns.X);
+      }, 500);
+    }
   };
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export const Board = () => {
           ))}
         </div>
       </section>
-      <ScoreBoard>
+      <ScoreBoard state={gameState}>
         {isGameFinish && (
           <button
             className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30"
