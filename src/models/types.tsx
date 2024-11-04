@@ -3,9 +3,9 @@ export type Mode = 'local' | 'bot' | null;
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type Turns = 'X' | 'O';
 export interface DifficultyConfig {
-  easy: (BoardType: BoardType[]) => number; // Función para dificultad fácil
-  medium: (BoardType: BoardType[]) => number; // Función para dificultad media
-  hard: (BoardType: BoardType[]) => number; // Función para dificultad difícil
+  easy: (board: BoardType[]) => number; // Función para dificultad fácil
+  medium: (board: BoardType[]) => number; // Función para dificultad media
+  hard: (board: BoardType[]) => number; // Función para dificultad difícil
 }
 
 export interface User {

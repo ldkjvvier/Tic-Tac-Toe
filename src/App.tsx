@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LocalGameBoard } from './components/localGameBoard';
+import { BotGameBoard, LocalGameBoard } from './components';
 import { SelectMode } from './components/SelectMode';
 import { Mode } from './models/types';
 
@@ -19,6 +19,7 @@ export const App = () => {
       {!gameMode && <SelectMode onModeSelection={handleModeSelection} />}
 
       {gameMode === 'local' && <LocalGameBoard />}
+      {gameMode === 'bot' && <BotGameBoard />}
     </div>
   );
 };

@@ -26,13 +26,8 @@ export const checkWinner = (newBoard: BoardType[]): BoardType => {
 };
 
 export const BotDifficulties: DifficultyConfig = {
-  easy: (newBoard: BoardType[]) => {
-    const emptySquares = newBoard.reduce((acc: number[], square, index) => {
-      if (square === null) {
-        acc.push(index);
-      }
-      return acc;
-    }, []);
+  easy: (board: BoardType[]) => {
+    const emptySquares = board.map((square, index) => (square === null ? index : -1)).filter((index) => index !== -1);
 
     const randomIndex = Math.floor(Math.random() * emptySquares.length);
     return emptySquares[randomIndex];

@@ -1,9 +1,9 @@
 // CommonBoard.tsx
-import { Square } from './Square';
 import { ScoreBoard } from './ScoreBoard';
 import { Turns } from '@/utils';
 import { BoardType, GameState } from '@/models/types';
 import { Circle, Cross } from './icons';
+import '../Board.css';
 
 interface CommonBoardProps {
   board: BoardType[];
@@ -28,12 +28,16 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
       <section className="flex justify-center">
         <div className="grid grid-cols-3 grid-rows-3">
           {board.map((_, index) => (
-            <Square key={index} index={index} updateBoard={() => onUpdateBoard(index)}>
+            <div
+              className={`flex items-center justify-center w-[85px] h-[85px] xs:w-[110px] xs:h-[110px] md:w-[160px] md:h-[160px] font-bold text-6xl md:text-8xl square square-${index}`}
+              onClick={() => onUpdateBoard(index)}
+              key={index}
+            >
               <span className="p-3 md:p-6">
                 {board[index] === Turns.X && <Cross />}
                 {board[index] === Turns.O && <Circle />}
               </span>
-            </Square>
+            </div>
           ))}
         </div>
       </section>
