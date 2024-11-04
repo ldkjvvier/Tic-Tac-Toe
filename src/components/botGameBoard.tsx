@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { checkWinner, TurnsValue, updateBoard, restartGame, restartScoreBoard } from '@/utils';
-import { BoardType, Turns as TurnsType } from '@/models/types';
+import { BoardType, Difficulty, Turns as TurnsType } from '@/models/types';
 import { incrementO, incrementX, incrementDraw, clearState } from '../redux/botGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
@@ -13,7 +13,7 @@ export const BotGameBoard = () => {
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
-  const DIFFICULTY = 'medium';
+  const DIFFICULTY: Difficulty = 'medium';
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
       dispatch(incrementX());
