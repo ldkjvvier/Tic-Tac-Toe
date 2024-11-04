@@ -11,12 +11,20 @@ export const App = () => {
   const handleModeSelection = (mode: Mode): void => {
     setGameMode(mode);
   };
+  if (!gameMode)
+    return (
+      <div className="flex flex-col h-full items-center justify-center">
+        <section className="landscape:hidden landscape:lg:block mb-12 text-center text-3xl md:text-5xl">
+          <h1>Tic Tac Toe</h1>
+        </section>
+        <SelectMode onModeSelection={handleModeSelection} />
+      </div>
+    );
   return (
     <div className="grid grid-flow-row place-items-center h-full flex-1">
       <section className="landscape:hidden landscape:lg:block mb-12 text-center text-3xl md:text-5xl">
         <h1>Tic Tac Toe</h1>
       </section>
-      {!gameMode && <SelectMode onModeSelection={handleModeSelection} />}
 
       {gameMode === 'local' && <LocalGameBoard />}
       {gameMode === 'bot' && <BotGameBoard />}
