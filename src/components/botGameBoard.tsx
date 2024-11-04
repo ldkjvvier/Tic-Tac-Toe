@@ -13,7 +13,7 @@ export const BotGameBoard = () => {
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
-  const DIFFICULTY = 'easy';
+  const DIFFICULTY = 'medium';
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
       dispatch(incrementX());

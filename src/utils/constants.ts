@@ -22,8 +22,39 @@ export const BotDifficulties: DifficultyConfig = {
     const randomIndex = Math.floor(Math.random() * emptySquares.length);
     return emptySquares[randomIndex];
   },
-  medium: () => {
-    return 0;
+  medium: (board: BoardType[]) => {
+    // Check if the bot can win
+    for (const combination of WINNING_COMBINATIONS) {
+      const [a, b, c] = combination;
+      if (board[a] === TurnsValue.O && board[b] === TurnsValue.O && board[c] === null) {
+        return c; // Win on this move
+      }
+      if (board[a] === TurnsValue.O && board[c] === TurnsValue.O && board[b] === null) {
+        return b; // Win on this move
+      }
+      if (board[b] === TurnsValue.O && board[c] === TurnsValue.O && board[a] === null) {
+        return a; // Win on this move
+      }
+    }
+
+    // Check if the opponent can win and block them
+    for (const combination of WINNING_COMBINATIONS) {
+      const [a, b, c] = combination;
+      if (board[a] === TurnsValue.X && board[b] === TurnsValue.X && board[c] === null) {
+        return c; // Block opponent
+      }
+      if (board[a] === TurnsValue.X && board[c] === TurnsValue.X && board[b] === null) {
+        return b; // Block opponent
+      }
+      if (board[b] === TurnsValue.X && board[c] === TurnsValue.X && board[a] === null) {
+        return a; // Block opponent
+      }
+    }
+
+    // If no winning or blocking move, choose a random empty square
+    const emptySquares = board.map((square, index) => (square === null ? index : -1)).filter((index) => index !== -1);
+    const randomIndex = Math.floor(Math.random() * emptySquares.length);
+    return emptySquares[randomIndex];
   },
   hard: () => {
     return 0;
