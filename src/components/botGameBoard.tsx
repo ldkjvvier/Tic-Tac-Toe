@@ -80,6 +80,7 @@ export const BotGameBoard = () => {
       turn={turn}
       gameState={gameState}
       isGameFinish={isGameFinish}
+      blockTurn={turn === TurnsValue.O}
     />
   );
 };

@@ -13,6 +13,7 @@ interface CommonBoardProps {
   onRestart: () => void;
   onRestartScoreBoard: () => void;
   gameState: GameState;
+  blockTurn?: boolean;
 }
 
 export const CommonBoard: React.FC<CommonBoardProps> = ({
@@ -21,7 +22,8 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
   isGameFinish,
   onRestart,
   onRestartScoreBoard,
-  gameState
+  gameState,
+  blockTurn = false
 }: CommonBoardProps) => {
   return (
     <>
@@ -30,7 +32,13 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
           {board.map((_, index) => (
             <div
               className={`flex items-center justify-center w-[85px] h-[85px] xs:w-[110px] xs:h-[110px] md:w-[160px] md:h-[160px] font-bold text-6xl md:text-8xl square square-${index}`}
-              onClick={() => onUpdateBoard(index)}
+              onClick={
+                !blockTurn
+                  ? () => {
+                      onUpdateBoard(index);
+                    }
+                  : undefined
+              }
               key={index}
             >
               <span className="p-3 md:p-6">
