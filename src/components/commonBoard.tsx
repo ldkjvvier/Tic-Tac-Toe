@@ -1,13 +1,13 @@
 // CommonBoard.tsx
 import { ScoreBoard } from './ScoreBoard';
-import { Turns } from '@/utils';
-import { BoardType, GameState } from '@/models/types';
+import { TurnsValue } from '@/utils';
+import { BoardType, GameState, Turns } from '@/models/types';
 import { Circle, Cross } from './icons';
 import '../Board.css';
 
 interface CommonBoardProps {
   board: BoardType[];
-  turn: string;
+  turn: Turns;
   onUpdateBoard: (index: number) => void;
   isGameFinish: boolean;
   onRestart: () => void;
@@ -34,8 +34,8 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
               key={index}
             >
               <span className="p-3 md:p-6">
-                {board[index] === Turns.X && <Cross />}
-                {board[index] === Turns.O && <Circle />}
+                {board[index] === TurnsValue.X && <Cross />}
+                {board[index] === TurnsValue.O && <Circle />}
               </span>
             </div>
           ))}

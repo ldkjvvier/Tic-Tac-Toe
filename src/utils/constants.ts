@@ -1,9 +1,9 @@
 import { BoardType, Difficulty, DifficultyConfig } from '@/models/types';
 
-export const Turns = {
+export const TurnsValue = {
   X: 'X',
   O: 'O'
-};
+} as const;
 
 export const WINNING_COMBINATIONS = [
   [0, 1, 2], // 1st row

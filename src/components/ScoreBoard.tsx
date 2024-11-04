@@ -3,7 +3,7 @@ import { RootState } from '@/redux/store';
 
 interface ScoreBoardProps {
   children: React.ReactNode;
-  state: RootState['localGame'] | RootState['botGame'];
+  state: RootState['botGame'] | RootState['localGame'];
 }
 
 export const ScoreBoard = ({ children, state }: ScoreBoardProps) => {

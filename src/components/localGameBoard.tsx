@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Turns, checkWinner } from '@/utils';
-import { BoardType } from '@/models/types';
+import { TurnsValue, checkWinner } from '@/utils';
+import { BoardType, Turns } from '@/models/types';
 import { incrementO, incrementX, incrementDraw, clearState } from '../redux/localGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
@@ -8,31 +8,30 @@ import { CommonBoard } from './commonBoard';
 export const LocalGameBoard = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: RootState) => state.localGame);
-  const [turn, setTurn] = useState(Turns.X);
+  const [turn, setTurn] = useState<Turns>(TurnsValue.X);
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
       dispatch(incrementX());
-      setIsGameFinish(true);
     }
     if (winner === 'O') {
       dispatch(incrementO());
-      setIsGameFinish(true);
     }
+    setIsGameFinish(true);
   };
 
   const restartGame = () => {
     setBoard(Array(9).fill(null));
-    setTurn(Turns.X);
+    setTurn(TurnsValue.X);
     setWinner(null);
     setIsGameFinish(false);
   };
   const restartScoreBoard = () => {
     dispatch(clearState());
     setBoard(Array(9).fill(null));
-    setTurn(Turns.X);
+    setTurn(TurnsValue.X);
     setWinner(null);
     setIsGameFinish(false);
   };
@@ -43,7 +42,7 @@ export const LocalGameBoard = () => {
     newBoard[index] = turn;
     setBoard(newBoard);
 
-    const newTurn = turn === Turns.X ? Turns.O : Turns.X;
+    const newTurn = turn === TurnsValue.X ? TurnsValue.O : TurnsValue.X;
     setTurn(newTurn);
   };
 
@@ -64,7 +63,6 @@ export const LocalGameBoard = () => {
       setIsGameFinish(true);
     }
   }, [board]);
-
   return (
     <CommonBoard
       onUpdateBoard={updateBoard}

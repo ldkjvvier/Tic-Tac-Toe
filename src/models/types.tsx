@@ -1,7 +1,8 @@
+import { TurnsValue } from '@/utils';
 export type BoardType = string | null;
 export type Mode = 'local' | 'bot' | null;
 export type Difficulty = 'easy' | 'medium' | 'hard';
-export type Turns = 'X' | 'O';
+export type Turns = (typeof TurnsValue)[keyof typeof TurnsValue];
 export interface DifficultyConfig {
   easy: (board: BoardType[]) => number; // Función para dificultad fácil
   medium: (board: BoardType[]) => number; // Función para dificultad media
