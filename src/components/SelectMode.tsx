@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setMode, startGame, renameUser } from '@/redux/gameSlice';
+import { renameUser } from '@/redux/localGameSlice';
 import { Mode } from '@/models/types';
 
-export const SelectMode: React.FC = () => {
+interface SelectModeProps {
+  onModeSelection: (mode: Mode) => void;
+}
+
+export const SelectMode = ({ onModeSelection }: SelectModeProps) => {
   const dispatch = useDispatch();
-  const [gameMode, setGameMode] = useState<Mode>('local');
   const [user1, setUser1] = useState<string>('');
   const [user2, setUser2] = useState<string>('');
+  const [gameMode, setGameMode] = useState<Mode>('local');
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setGameMode(e.target.value as Mode);
-  };
-
-  const handleStart = () => {
-    dispatch(setMode(gameMode));
-    dispatch(startGame());
   };
 
   const handleRename = (e: React.ChangeEvent<HTMLInputElement>, user: 'user1' | 'user2') => {
@@ -29,7 +28,7 @@ export const SelectMode: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleStart();
+    onModeSelection(gameMode);
   };
 
   return (
@@ -38,7 +37,7 @@ export const SelectMode: React.FC = () => {
       <select
         className="mt-4 p-3 w-full border-2 border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={handleSelect}
-        value={gameMode}
+        value={'local'}
       >
         <option value="local">Local</option>
         <option value="bot">Bot</option>

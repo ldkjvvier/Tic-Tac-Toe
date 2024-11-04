@@ -1,5 +1,5 @@
-import { GameState, Mode, Difficulty } from '@/models/types';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { GameState } from '@/models/types';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: GameState = {
   user1: {
@@ -11,12 +11,11 @@ const initialState: GameState = {
     victories: 0
   },
   mode: 'local',
-  isGameStarted: false,
   draw: 0
 };
 
 export const gameSlice = createSlice({
-  name: 'game',
+  name: 'localGame',
   initialState,
   reducers: {
     incrementX: (state: GameState) => {
@@ -33,18 +32,6 @@ export const gameSlice = createSlice({
       state.user2.victories = 0;
       state.draw = 0;
     },
-    setMode: (state: GameState, action: PayloadAction<Mode>) => {
-      state.mode = action.payload;
-      if (action.payload === 'bot') {
-        state.user2.name = 'Bot';
-      }
-    },
-    startGame: (state: GameState) => {
-      state.isGameStarted = true;
-    },
-    endGame: (state: GameState) => {
-      state.isGameStarted = false;
-    },
     renameUser: (
       state: GameState,
       action: {
@@ -53,24 +40,9 @@ export const gameSlice = createSlice({
       }
     ) => {
       state[action.payload.user].name = action.payload.name;
-    },
-    setDifficulty: (state: GameState, action: PayloadAction<Difficulty>) => {
-      if (state.mode === 'bot') {
-        state.difficulty = action.payload; // Aseguramos que estamos en modo bot
-      }
     }
   }
 });
 
-export const {
-  incrementX,
-  incrementO,
-  incrementDraw,
-  clearState,
-  setMode,
-  startGame,
-  endGame,
-  renameUser,
-  setDifficulty
-} = gameSlice.actions;
+export const { incrementX, incrementO, incrementDraw, clearState, renameUser } = gameSlice.actions;
 export default gameSlice.reducer;

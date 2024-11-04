@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameReducer from './gameSlice';
+import localGameReducer from './localGameSlice';
+import botGameReducer from './botGameSlice';
 export const store = configureStore({
   reducer: {
-    game: gameReducer
+    localGame: localGameReducer,
+    botGame: botGameReducer
   }
 });
 
