@@ -1,9 +1,9 @@
+import { GameState } from '@/models/types';
 import { Cross, Circle } from './icons';
-import { RootState } from '@/redux/store';
 
 interface ScoreBoardProps {
   children: React.ReactNode;
-  state: RootState['botGame'] | RootState['localGame'];
+  state: GameState;
 }
 
 export const ScoreBoard = ({ children, state }: ScoreBoardProps) => {

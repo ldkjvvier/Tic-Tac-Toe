@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { checkWinner, TurnsValue } from '@/utils';
 import { BoardType, Turns as TurnsType } from '@/models/types';
-import { incrementO, incrementX, incrementDraw, clearState } from '../redux/localGameSlice';
+import { incrementO, incrementX, incrementDraw, clearState } from '../redux/botGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CommonBoard } from './commonBoard';
