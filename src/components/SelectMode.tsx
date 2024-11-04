@@ -37,7 +37,7 @@ export const SelectMode = ({ onModeSelection }: SelectModeProps) => {
       <select
         className="mt-4 p-3 w-full border-2 border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={handleSelect}
-        value={'local'}
+        value={gameMode === 'local' ? 'local' : gameMode === 'bot' ? 'bot' : 'local'}
       >
         <option value="local">Local</option>
         <option value="bot">Bot</option>
@@ -65,14 +65,6 @@ export const SelectMode = ({ onModeSelection }: SelectModeProps) => {
         )}
         {gameMode === 'bot' && (
           <>
-            <input
-              className="mt-4 p-3 w-full border-2 border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              type="text"
-              placeholder="Player 1"
-              value={user1}
-              onChange={(e) => handleRename(e, 'user1')}
-              required
-            />
             <select
               className="mt-4 p-3 w-full border-2 border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               defaultValue="easy"
