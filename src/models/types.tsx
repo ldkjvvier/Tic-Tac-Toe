@@ -1,8 +1,32 @@
 import { TurnsValue } from '@/utils';
+import { Action, Dispatch } from '@reduxjs/toolkit';
+
 export type BoardType = string | null;
 export type Mode = 'local' | 'bot' | null;
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type Turns = (typeof TurnsValue)[keyof typeof TurnsValue];
+
+export interface UpdateBoardParams {
+  index: number;
+  board: BoardType[];
+  setBoard: (board: BoardType[]) => void;
+  turn: Turns;
+  setTurn: React.Dispatch<React.SetStateAction<Turns>>;
+  winner: string | null;
+}
+
+export interface RestartGameParams {
+  setBoard: (value: React.SetStateAction<BoardType[]>) => void;
+  setTurn: (value: React.SetStateAction<Turns>) => void;
+  setWinner: (value: React.SetStateAction<string | null>) => void;
+  setIsGameFinish: (value: React.SetStateAction<boolean>) => void;
+  TurnsValue: typeof TurnsValue;
+}
+
+export interface restartScoreBoardParams extends RestartGameParams {
+  dispatch: Dispatch;
+  clearState: () => Action;
+}
 export interface DifficultyConfig {
   easy: (board: BoardType[]) => number; // Función para dificultad fácil
   medium: (board: BoardType[]) => number; // Función para dificultad media

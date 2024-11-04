@@ -1,5 +1,4 @@
-import { BoardType, Difficulty, DifficultyConfig } from '@/models/types';
-
+import { BoardType, DifficultyConfig } from '@/models/types';
 export const TurnsValue = {
   X: 'X',
   O: 'O'
@@ -15,15 +14,6 @@ export const WINNING_COMBINATIONS = [
   [0, 4, 8], // 1st diagonal
   [2, 4, 6] // 2nd diagonal
 ];
-export const checkWinner = (newBoard: BoardType[]): BoardType => {
-  /* Si retorna null no hay ganador */
-  for (const [a, b, c] of WINNING_COMBINATIONS) {
-    if (newBoard[a] && newBoard[a] === newBoard[b] && newBoard[a] === newBoard[c]) {
-      return newBoard[a];
-    }
-  }
-  return null;
-};
 
 export const BotDifficulties: DifficultyConfig = {
   easy: (board: BoardType[]) => {
@@ -38,8 +28,4 @@ export const BotDifficulties: DifficultyConfig = {
   hard: () => {
     return 0;
   }
-};
-
-export const selectBotMove = (difficulty: Difficulty, newBoard: BoardType[]): number => {
-  return BotDifficulties[difficulty](newBoard);
 };

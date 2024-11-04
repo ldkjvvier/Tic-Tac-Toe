@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TurnsValue, checkWinner } from '@/utils';
+import { TurnsValue, checkWinner, updateBoard, restartGame, restartScoreBoard } from '@/utils';
 import { BoardType, Turns } from '@/models/types';
 import { incrementO, incrementX, incrementDraw, clearState } from '../redux/localGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,31 +21,29 @@ export const LocalGameBoard = () => {
     }
     setIsGameFinish(true);
   };
-
-  const restartGame = () => {
-    setBoard(Array(9).fill(null));
-    setTurn(TurnsValue.X);
-    setWinner(null);
-    setIsGameFinish(false);
+  const handleRestartScoreBoard = () => {
+    restartScoreBoard({
+      dispatch,
+      setBoard,
+      setTurn,
+      setWinner,
+      setIsGameFinish,
+      TurnsValue,
+      clearState
+    });
   };
-  const restartScoreBoard = () => {
-    dispatch(clearState());
-    setBoard(Array(9).fill(null));
-    setTurn(TurnsValue.X);
-    setWinner(null);
-    setIsGameFinish(false);
+  const handleUpdateBoard = (index: number) => {
+    updateBoard({ index, board, setBoard, turn, setTurn, winner });
   };
-  const updateBoard = (index: number): void => {
-    if (board[index] !== null || winner) return; // Verificar si la posición está ocupada o si ya hay un ganador
-
-    const newBoard = [...board];
-    newBoard[index] = turn;
-    setBoard(newBoard);
-
-    const newTurn = turn === TurnsValue.X ? TurnsValue.O : TurnsValue.X;
-    setTurn(newTurn);
+  const handleRestartGame = () => {
+    restartGame({
+      setBoard,
+      setTurn,
+      setWinner,
+      setIsGameFinish,
+      TurnsValue
+    });
   };
-
   useEffect(() => {
     /* Revisa si hay un ganador */
     const newWinner = checkWinner(board);
@@ -65,9 +63,9 @@ export const LocalGameBoard = () => {
   }, [board]);
   return (
     <CommonBoard
-      onUpdateBoard={updateBoard}
-      onRestart={restartGame}
-      onRestartScoreBoard={restartScoreBoard}
+      onUpdateBoard={(index) => handleUpdateBoard(index)}
+      onRestart={handleRestartGame}
+      onRestartScoreBoard={handleRestartScoreBoard}
       board={board}
       turn={turn}
       gameState={gameState}
