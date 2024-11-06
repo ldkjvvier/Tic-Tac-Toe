@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { renameUser } from '@/redux/localGameSlice';
-import { Mode } from '@/models/types';
+import { Difficulty, Mode } from '@/models/types';
 
-interface SelectModeProps {
-  onModeSelection: (mode: Mode) => void;
-}
-
-export const SelectMode = ({ onModeSelection }: SelectModeProps) => {
+export const SelectMode = () => {
   const dispatch = useDispatch();
   const [user1, setUser1] = useState<string>('');
   const [user2, setUser2] = useState<string>('');
   const [gameMode, setGameMode] = useState<Mode>('local');
-
+  const [difficulty, setDifficulty] = useState<Difficulty>('easy');
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setGameMode(e.target.value as Mode);
   };
@@ -28,7 +24,14 @@ export const SelectMode = ({ onModeSelection }: SelectModeProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onModeSelection(gameMode);
+    if (gameMode === 'local') {
+      if (user1 && user2) {
+        window.location.href = '/Tic-Tac-Toe/local';
+      }
+    }
+    if (gameMode === 'bot') {
+      window.location.href = `/Tic-Tac-Toe/bot/${difficulty}`;
+    }
   };
 
   return (
@@ -68,11 +71,12 @@ export const SelectMode = ({ onModeSelection }: SelectModeProps) => {
             <select
               className="mt-4 p-3 w-full border-2 border-gray-500 rounded-md bg-[#1a2233] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               defaultValue="easy"
+              onChange={(e) => setDifficulty(e.target.value as Difficulty)}
             >
               <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
               {/* // TODO: NOT IMPLEMENTED */}
-              {/* <option value="medium">Medium</option>
-              <option value="hard">Hard</option> */}
+              {/* <option value="hard">Hard</option> */}
             </select>
           </>
         )}

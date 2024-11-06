@@ -6,14 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CommonBoard } from './commonBoard';
 import { selectBotMove } from '@/utils';
-export const BotGameBoard = () => {
+
+interface BotGameBoardProps {
+  difficulty: Difficulty;
+}
+export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: RootState) => state.botGame);
   const [turn, setTurn] = useState<TurnsType>(TurnsValue.X);
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
-  const DIFFICULTY: Difficulty = 'medium';
+
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
       dispatch(incrementX());
@@ -67,7 +71,7 @@ export const BotGameBoard = () => {
     if (turn === TurnsValue.O && !winner) {
       // Solo se ejecuta el movimiento del bot después de que se haya cambiado el turno
       setTimeout(() => {
-        handleUpdateBoard(selectBotMove(DIFFICULTY, board));
+        handleUpdateBoard(selectBotMove(difficulty, board));
       }, 500);
     }
   }, [board]);
