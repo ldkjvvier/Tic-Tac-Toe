@@ -17,4 +17,4 @@ const routerConfig = [
 ];
 
 // Añadir basename al crear el router
-export const router = createBrowserRouter(routerConfig, { basename: '/Tic-Tac-Toe' });
+export const router = createBrowserRouter(routerConfig);

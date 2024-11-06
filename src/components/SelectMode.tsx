@@ -26,11 +26,11 @@ export const SelectMode = () => {
     e.preventDefault();
     if (gameMode === 'local') {
       if (user1 && user2) {
-        window.location.href = '/Tic-Tac-Toe/local';
+        window.location.href = '/local';
       }
     }
     if (gameMode === 'bot') {
-      window.location.href = `/Tic-Tac-Toe/bot/${difficulty}`;
+      window.location.href = `/bot/${difficulty}`;
     }
   };
 
@@ -40,7 +40,7 @@ export const SelectMode = () => {
       <select
         className="mt-4 p-3 w-full border-2 border-gray-500 rounded-md bg-[#1a2233] text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={handleSelect}
-        value={gameMode === 'local' ? 'local' : gameMode === 'bot' ? 'bot' : 'local'}
+        defaultValue={'local'}
       >
         <option value="local">Local</option>
         <option value="bot">Bot</option>

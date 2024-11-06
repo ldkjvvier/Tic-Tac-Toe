@@ -5,9 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "target": "ESNext"  // Opcional, si necesitas especificar el target
+    "strict": true
   },
-  "include": ["vite.config.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist"]  // Opcional, si tienes estas carpetas
+  "include": ["vite.config.ts"]
 }
