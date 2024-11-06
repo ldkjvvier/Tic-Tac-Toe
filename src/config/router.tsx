@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { SelectMode, LocalGameBoard, BotGameWrapper } from '@/components';
+
 const routerConfig = [
-  { path: '/Tic-Tac-Toe', element: <SelectMode /> },
-  { path: '/Tic-Tac-Toe/local', element: <LocalGameBoard /> },
-  { path: '/Tic-Tac-Toe/bot/:difficulty', element: <BotGameWrapper /> },
+  { path: '/', element: <SelectMode /> },
+  { path: '/local', element: <LocalGameBoard /> },
+  { path: '/bot/:difficulty', element: <BotGameWrapper /> },
   {
     path: '*',
     element: (
@@ -15,4 +16,5 @@ const routerConfig = [
   }
 ];
 
-export const router = createBrowserRouter(routerConfig);
+// Añadir basename al crear el router
+export const router = createBrowserRouter(routerConfig, { basename: '/Tic-Tac-Toe' });
