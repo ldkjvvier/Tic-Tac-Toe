@@ -9,5 +9,5 @@ export default defineConfig({
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  base: 'https://ldkjvvier.github.io/Tic-Tac-Toe'
+  base: 'Tic-Tac-Toe'
 });
