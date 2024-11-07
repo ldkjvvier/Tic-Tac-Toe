@@ -1,10 +1,24 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { SelectMode, LocalGameBoard, BotGameWrapper } from '@/components';
+import { SelectMode, LocalGameBoard, BotGameWrapper, Layout } from '@/components';
 
 const routerConfig = [
   { path: '/', element: <SelectMode /> },
-  { path: '/local', element: <LocalGameBoard /> },
-  { path: '/bot/:difficulty', element: <BotGameWrapper /> },
+  {
+    path: '/local',
+    element: (
+      <Layout>
+        <LocalGameBoard />
+      </Layout>
+    )
+  },
+  {
+    path: '/bot/:difficulty',
+    element: (
+      <Layout>
+        <BotGameWrapper />
+      </Layout>
+    )
+  },
   {
     path: '*',
     element: (

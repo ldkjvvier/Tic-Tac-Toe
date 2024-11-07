@@ -10,25 +10,28 @@
 }
 
 :root {
+  /* Mantén las propiedades que ya tienes */
   font-family: "Raleway", sans-serif;
   line-height: 1.5;
   font-weight: 500;
   font-optical-sizing: auto;
-  font-style: normal ;
-
+  font-style: normal;
   color-scheme: light dark;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* Color de texto predeterminado en gris suave */
+  color: #B0BEC5; /* Un tono de gris claro */
 }
+
 html, body, .root {
   height: 100%;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
   background-color: #1B263B;
