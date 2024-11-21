@@ -43,6 +43,7 @@ interface BaseGameState {
   user2: User;
   draw: number;
   mode: Mode;
+  winner: string | null;
 }
 
 interface LocalGameState extends BaseGameState {

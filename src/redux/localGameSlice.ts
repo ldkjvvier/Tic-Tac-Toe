@@ -11,6 +11,7 @@ const initialState: GameState = {
     victories: 0
   },
   mode: 'local',
+  winner: null,
   draw: 0
 };
 
@@ -40,6 +41,9 @@ export const gameSlice = createSlice({
       }
     ) => {
       state[action.payload.user].name = action.payload.name;
+    },
+    setWinner: (state: GameState, action: { type: string; payload: string | null }) => {
+      state.winner = action.payload;
     }
   }
 });
