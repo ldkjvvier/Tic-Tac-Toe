@@ -32,6 +32,7 @@ export const gameSlice = createSlice({
       state.user1.victories = 0;
       state.user2.victories = 0;
       state.draw = 0;
+      state.winner = null;
     },
     renameUser: (
       state: GameState,
@@ -41,12 +42,9 @@ export const gameSlice = createSlice({
       }
     ) => {
       state[action.payload.user].name = action.payload.name;
-    },
-    clearWinner: (state: GameState) => {
-      state.winner = null;
     }
   }
 });
 
-export const { incrementX, incrementO, incrementDraw, clearState, renameUser, clearWinner } = gameSlice.actions;
+export const { incrementX, incrementO, incrementDraw, clearState, renameUser } = gameSlice.actions;
 export default gameSlice.reducer;

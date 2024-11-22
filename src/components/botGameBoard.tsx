@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { checkWinner, TurnsValue, updateBoard, restartGame, restartScoreBoard } from '@/utils';
 import { BoardType, Difficulty, Turns as TurnsType } from '@/models/types';
-import { incrementO, incrementX, incrementDraw, clearState, clearWinner } from '../redux/botGameSlice';
+import { incrementO, incrementX, incrementDraw, clearState } from '../redux/botGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CommonBoard } from './commonBoard';
@@ -31,7 +31,6 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
       dispatch,
       setBoard,
       setTurn,
-      clearWinner,
       setIsGameFinish,
       TurnsValue,
       clearState
@@ -44,7 +43,6 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
     restartGame({
       setBoard,
       setTurn,
-      clearWinner,
       setIsGameFinish,
       TurnsValue
     });

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TurnsValue, checkWinner, updateBoard, restartGame, restartScoreBoard } from '@/utils';
 import { BoardType, Turns } from '@/models/types';
-import { incrementO, incrementX, incrementDraw, clearState, clearWinner } from '../redux/localGameSlice';
+import { incrementO, incrementX, incrementDraw, clearState } from '../redux/localGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CommonBoard } from './commonBoard';
@@ -24,7 +24,6 @@ export const LocalGameBoard = () => {
       dispatch,
       setBoard,
       setTurn,
-      clearWinner,
       setIsGameFinish,
       TurnsValue,
       clearState
@@ -37,7 +36,6 @@ export const LocalGameBoard = () => {
     restartGame({
       setBoard,
       setTurn,
-      clearWinner,
       setIsGameFinish,
       TurnsValue
     });

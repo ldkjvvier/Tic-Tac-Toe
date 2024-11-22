@@ -35,17 +35,15 @@ export const gameSlice = createSlice({
       state.user1.victories = 0;
       state.user2.victories = 0;
       state.draw = 0;
+      state.winner = null;
     },
     setDifficulty: (state: GameState, action: PayloadAction<Difficulty>) => {
       if (state.mode === 'bot') {
         state.difficulty = action.payload; // Aseguramos que estamos en modo bot
       }
-    },
-    clearWinner: (state: GameState) => {
-      state.winner = null;
     }
   }
 });
 
-export const { incrementX, incrementO, incrementDraw, clearState, setDifficulty, clearWinner } = gameSlice.actions;
+export const { incrementX, incrementO, incrementDraw, clearState, setDifficulty } = gameSlice.actions;
 export default gameSlice.reducer;

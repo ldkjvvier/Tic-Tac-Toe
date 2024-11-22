@@ -25,10 +25,9 @@ export const checkWinner = (newBoard: BoardType[]): BoardType => {
   return null;
 };
 
-export const restartGame = ({ setBoard, setTurn, clearWinner, setIsGameFinish, TurnsValue }: RestartGameParams) => {
+export const restartGame = ({ setBoard, setTurn, setIsGameFinish, TurnsValue }: RestartGameParams) => {
   setBoard(Array(9).fill(null));
   setTurn(TurnsValue.X);
-  clearWinner();
   setIsGameFinish(false);
 };
 
@@ -36,7 +35,6 @@ export const restartScoreBoard = ({
   dispatch,
   setBoard,
   setTurn,
-  clearWinner,
   setIsGameFinish,
   TurnsValue,
   clearState
@@ -44,6 +42,5 @@ export const restartScoreBoard = ({
   dispatch(clearState());
   setBoard(Array(9).fill(null));
   setTurn(TurnsValue.X);
-  dispatch(clearWinner());
   setIsGameFinish(false);
 };

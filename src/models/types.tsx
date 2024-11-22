@@ -18,7 +18,6 @@ export interface UpdateBoardParams {
 export interface RestartGameParams {
   setBoard: (value: React.SetStateAction<BoardType[]>) => void;
   setTurn: (value: React.SetStateAction<Turns>) => void;
-  clearWinner: () => Action;
   setIsGameFinish: (value: React.SetStateAction<boolean>) => void;
   TurnsValue: typeof TurnsValue;
 }
