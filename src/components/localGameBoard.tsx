@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TurnsValue, checkWinner, updateBoard, restartGame, restartScoreBoard } from '@/utils';
 import { BoardType, Turns } from '@/models/types';
-import { incrementO, incrementX, incrementDraw, clearState } from '../redux/localGameSlice';
+import { incrementO, incrementX, incrementDraw, clearState, clearWinner } from '../redux/localGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CommonBoard } from './commonBoard';
@@ -10,7 +10,6 @@ export const LocalGameBoard = () => {
   const gameState = useSelector((state: RootState) => state.localGame);
   const [turn, setTurn] = useState<Turns>(TurnsValue.X);
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
-  const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
@@ -19,27 +18,26 @@ export const LocalGameBoard = () => {
     if (winner === 'O') {
       dispatch(incrementO());
     }
-    setIsGameFinish(true);
   };
   const handleRestartScoreBoard = () => {
     restartScoreBoard({
       dispatch,
       setBoard,
       setTurn,
-      setWinner,
+      clearWinner,
       setIsGameFinish,
       TurnsValue,
       clearState
     });
   };
   const handleUpdateBoard = (index: number) => {
-    updateBoard({ index, board, setBoard, turn, setTurn, winner });
+    updateBoard({ index, board, setBoard, turn, setTurn, winner: gameState.winner });
   };
   const handleRestartGame = () => {
     restartGame({
       setBoard,
       setTurn,
-      setWinner,
+      clearWinner,
       setIsGameFinish,
       TurnsValue
     });
@@ -47,11 +45,11 @@ export const LocalGameBoard = () => {
   useEffect(() => {
     /* Revisa si hay un ganador */
     const newWinner = checkWinner(board);
-    setWinner(newWinner);
 
     /* Guarda el ganador en la scoreBoard */
     if (newWinner) {
       DispatchWinner(newWinner);
+      setIsGameFinish(true);
       return;
     }
 

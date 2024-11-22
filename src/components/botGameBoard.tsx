@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { checkWinner, TurnsValue, updateBoard, restartGame, restartScoreBoard } from '@/utils';
 import { BoardType, Difficulty, Turns as TurnsType } from '@/models/types';
-import { incrementO, incrementX, incrementDraw, clearState } from '../redux/botGameSlice';
+import { incrementO, incrementX, incrementDraw, clearState, clearWinner } from '../redux/botGameSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { CommonBoard } from './commonBoard';
@@ -15,7 +15,6 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
   const gameState = useSelector((state: RootState) => state.botGame);
   const [turn, setTurn] = useState<TurnsType>(TurnsValue.X);
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
-  const [winner, setWinner] = useState<string | null>(null);
   const [isGameFinish, setIsGameFinish] = useState(false);
 
   const DispatchWinner = (winner: string | null) => {
@@ -25,7 +24,6 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
     if (winner === 'O') {
       dispatch(incrementO());
     }
-    setIsGameFinish(true);
   };
 
   const handleRestartScoreBoard = () => {
@@ -33,20 +31,20 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
       dispatch,
       setBoard,
       setTurn,
-      setWinner,
+      clearWinner,
       setIsGameFinish,
       TurnsValue,
       clearState
     });
   };
   const handleUpdateBoard = (index: number) => {
-    updateBoard({ index, board, setBoard, turn, setTurn, winner });
+    updateBoard({ index, board, setBoard, turn, setTurn, winner: gameState.winner });
   };
   const handleRestartGame = () => {
     restartGame({
       setBoard,
       setTurn,
-      setWinner,
+      clearWinner,
       setIsGameFinish,
       TurnsValue
     });
@@ -54,11 +52,11 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
   useEffect(() => {
     /* Revisa si hay un ganador */
     const newWinner = checkWinner(board);
-    setWinner(newWinner);
 
     /* Guarda el ganador en la scoreBoard */
     if (newWinner) {
       DispatchWinner(newWinner);
+      setIsGameFinish(true);
       return;
     }
 
@@ -68,7 +66,7 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
       setIsGameFinish(true);
     }
 
-    if (turn === TurnsValue.O && !winner) {
+    if (turn === TurnsValue.O && !gameState.winner) {
       // Solo se ejecuta el movimiento del bot después de que se haya cambiado el turno
       setTimeout(() => {
         handleUpdateBoard(selectBotMove(difficulty, board));

@@ -52,14 +52,18 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
       <ScoreBoard state={gameState}>
         {isGameFinish && (
           <>
-            <div className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30 z-40" onClick={onRestart}>
+            <button className="bg-black fixed h-screen w-screen top-0 left-0 bg-opacity-30 z-40" onClick={onRestart}>
               <div className="fixed inset-0 flex flex-col items-center justify-center z-50">
                 <div className="text-center">
                   {/* Texto del ganador */}
-                  <h1 className="text-white text-4xl font-bold animate-bounce">¡El ganador es {gameState.winner}!</h1>
+                  {
+                    <h2 className="text-3xl font-bold text-white">
+                      {gameState.winner ? `¡${gameState.winner} ha ganado!` : '¡Empate!'}
+                    </h2>
+                  }
                 </div>
               </div>
-            </div>
+            </button>
           </>
         )}
 

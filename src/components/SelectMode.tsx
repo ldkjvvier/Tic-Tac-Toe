@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { renameUser } from '@/redux/localGameSlice';
 import { Difficulty } from '@/models/types';
 import { Modal } from './modal';
+import { useNavigate } from 'react-router-dom';
 export const SelectMode = () => {
   return (
     <div className="grid grid-flow-row place-items-center h-full flex-1">
@@ -86,8 +87,9 @@ export const LocalMode = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const navigate = useNavigate();
     if (user1 && user2) {
-      window.location.href = '/local';
+      navigate('/local'); // Redirecciona sin recargar
     }
   };
   return (
