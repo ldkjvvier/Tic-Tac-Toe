@@ -37,7 +37,8 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
     });
   };
   const handleUpdateBoard = (index: number) => {
-    updateBoard({ index, board, setBoard, turn, setTurn, winner: gameState.winner });
+    console.log('ACTUALIZANDO TABLERO');
+    updateBoard({ index, board, setBoard, turn, setTurn, isGameFinish });
   };
   const handleRestartGame = () => {
     restartGame({
@@ -64,7 +65,7 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
       setIsGameFinish(true);
     }
 
-    if (turn === TurnsValue.O && !gameState.winner) {
+    if (turn === TurnsValue.O && !isGameFinish) {
       // Solo se ejecuta el movimiento del bot después de que se haya cambiado el turno
       setTimeout(() => {
         handleUpdateBoard(selectBotMove(difficulty, board));

@@ -12,7 +12,7 @@ export interface UpdateBoardParams {
   setBoard: (board: BoardType[]) => void;
   turn: Turns;
   setTurn: React.Dispatch<React.SetStateAction<Turns>>;
-  winner: string | null;
+  isGameFinish: boolean;
 }
 
 export interface RestartGameParams {

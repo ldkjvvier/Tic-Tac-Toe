@@ -30,7 +30,7 @@ export const LocalGameBoard = () => {
     });
   };
   const handleUpdateBoard = (index: number) => {
-    updateBoard({ index, board, setBoard, turn, setTurn, winner: gameState.winner });
+    updateBoard({ index, board, setBoard, turn, setTurn, isGameFinish });
   };
   const handleRestartGame = () => {
     restartGame({

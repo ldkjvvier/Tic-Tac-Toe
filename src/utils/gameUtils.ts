@@ -1,7 +1,7 @@
 import { UpdateBoardParams, Difficulty, BoardType, RestartGameParams, restartScoreBoardParams } from '@/models/types';
 import { BotDifficulties, TurnsValue, WINNING_COMBINATIONS } from './constants';
-export const updateBoard = ({ index, board, setBoard, turn, setTurn, winner }: UpdateBoardParams): void => {
-  if (board[index] !== null || winner) return; // Verificar si la posición está ocupada o si ya hay un ganador
+export const updateBoard = ({ index, board, setBoard, turn, setTurn, isGameFinish }: UpdateBoardParams): void => {
+  if (board[index] !== null || isGameFinish) return; // Verificar si la posición está ocupada o si ya hay un ganador
 
   const newBoard = [...board];
   newBoard[index] = turn;
