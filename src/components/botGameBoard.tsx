@@ -16,6 +16,7 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
   const [turn, setTurn] = useState<TurnsType>(TurnsValue.X);
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [isGameFinish, setIsGameFinish] = useState(false);
+  const [draw, setDraw] = useState<boolean>(false);
 
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
@@ -37,7 +38,6 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
     });
   };
   const handleUpdateBoard = (index: number) => {
-    console.log('ACTUALIZANDO TABLERO');
     updateBoard({ index, board, setBoard, turn, setTurn, isGameFinish });
   };
   const handleRestartGame = () => {
@@ -49,6 +49,7 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
     });
   };
   useEffect(() => {
+    setDraw(false);
     /* Revisa si hay un ganador */
     const newWinner = checkWinner(board);
 
@@ -63,6 +64,7 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
     if (board.every((square) => square !== null)) {
       dispatch(incrementDraw());
       setIsGameFinish(true);
+      setDraw(true);
     }
 
     if (turn === TurnsValue.O && !isGameFinish) {
@@ -82,6 +84,7 @@ export const BotGameBoard = ({ difficulty }: BotGameBoardProps) => {
       gameState={gameState}
       isGameFinish={isGameFinish}
       blockTurn={turn === TurnsValue.O}
+      draw={draw}
     />
   );
 };

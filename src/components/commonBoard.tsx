@@ -14,6 +14,7 @@ interface CommonBoardProps {
   onRestartScoreBoard: () => void;
   gameState: GameState;
   blockTurn?: boolean;
+  draw: boolean;
 }
 
 export const CommonBoard: React.FC<CommonBoardProps> = ({
@@ -23,7 +24,8 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
   onRestart,
   onRestartScoreBoard,
   gameState,
-  blockTurn = false
+  blockTurn = false,
+  draw
 }: CommonBoardProps) => {
   return (
     <>
@@ -58,7 +60,7 @@ export const CommonBoard: React.FC<CommonBoardProps> = ({
                   {/* Texto del ganador */}
                   {
                     <h2 className="text-3xl font-bold text-white">
-                      {gameState.winner ? `¡${gameState.winner} ha ganado!` : '¡Empate!'}
+                      {draw ? 'Empate' : `${gameState.winner} ha ganado!`}
                     </h2>
                   }
                 </div>

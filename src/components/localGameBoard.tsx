@@ -11,6 +11,7 @@ export const LocalGameBoard = () => {
   const [turn, setTurn] = useState<Turns>(TurnsValue.X);
   const [board, setBoard] = useState<BoardType[]>(Array(9).fill(null));
   const [isGameFinish, setIsGameFinish] = useState(false);
+  const [draw, setDraw] = useState<boolean>(false);
   const DispatchWinner = (winner: string | null) => {
     if (winner === 'X') {
       dispatch(incrementX());
@@ -41,6 +42,7 @@ export const LocalGameBoard = () => {
     });
   };
   useEffect(() => {
+    setDraw(false);
     /* Revisa si hay un ganador */
     const newWinner = checkWinner(board);
 
@@ -55,6 +57,7 @@ export const LocalGameBoard = () => {
     if (board.every((square) => square !== null)) {
       dispatch(incrementDraw());
       setIsGameFinish(true);
+      setDraw(true);
     }
   }, [board]);
   return (
@@ -66,6 +69,7 @@ export const LocalGameBoard = () => {
       turn={turn}
       gameState={gameState}
       isGameFinish={isGameFinish}
+      draw={draw}
     />
   );
 };
