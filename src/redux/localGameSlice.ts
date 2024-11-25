@@ -21,9 +21,11 @@ export const gameSlice = createSlice({
   reducers: {
     incrementX: (state: GameState) => {
       state.user1.victories += 1;
+      state.winner = state.user1.name;
     },
     incrementO: (state: GameState) => {
       state.user2.victories += 1;
+      state.winner = state.user2.name;
     },
     incrementDraw: (state: GameState) => {
       state.draw += 1;

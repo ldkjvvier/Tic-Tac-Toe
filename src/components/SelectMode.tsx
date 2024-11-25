@@ -73,6 +73,7 @@ export const BotMode = () => {
 
 export const LocalMode = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Hook de React Router
   const [user1, setUser1] = useState<string>('');
   const [user2, setUser2] = useState<string>('');
 
@@ -87,11 +88,12 @@ export const LocalMode = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const navigate = useNavigate();
+
     if (user1 && user2) {
-      navigate('/local'); // Redirecciona sin recargar
+      navigate('/local'); // Redirige sin recargar la página
     }
   };
+
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <div className="grid grid-flow-row gap-3 bg-primary-bg p-4 py-12">
