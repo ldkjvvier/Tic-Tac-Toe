@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { renameUser } from '@/redux/localGameSlice';
 import { Difficulty } from '@/models/types';
 import { Modal } from './modal';
+import { LocalIcon, BotIcon } from './icons';
 import { useNavigate } from 'react-router-dom';
 export const SelectMode = () => {
   return (
@@ -13,16 +14,22 @@ export const SelectMode = () => {
           boxShadow: '0 0 15px 5px rgba(255, 255, 255, 0.1), 0 0 25px 5px rgba(27, 38, 59, 0.5)'
         }}
       >
-        <header className="w-full">
+        <header className="w-full text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Tic Tac Toe</h2>
         </header>
 
         <section className="w-full flex flex-col gap-3">
           <Modal component={<LocalMode />}>
-            <span>Jugar localmente</span>
+            <span className="flex items-center gap-2">
+              <LocalIcon />
+              <span>Jugar local</span>
+            </span>
           </Modal>
           <Modal component={<BotMode />}>
-            <span>Jugar contra la máquina</span>
+            <span className="flex items-center gap-2">
+              <BotIcon />
+              <span>Jugar contra la máquina</span>
+            </span>
           </Modal>
         </section>
       </div>
